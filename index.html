@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Two way data binding</title>
+    <!-- development version, includes helpful console warnings
+         從https://vuejs.org/v2/guide/ ，vue documentation取得
+         development version，上線要用production ver才會輕巧且不會有console warnings
+     -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{ title }}</h2>
+
+        <!-- 下面這個就是在做所謂的Two way data binding
+             當input因為keyup事件獲得value並修改到Vue Instance的name data
+             而當name data做變動的時候，也會影響到在template syntax中的name
+        -->
+        <p>My name is {{ name }}</p>
+        <input type="text" @keyup="updateName"><br>
+
+        <!--  實際透過v-model實踐two way data binding
+              這比較合理，當你instance name變化，會影響到input value的值
+              當input value值變化也會影響到vue instance 的name
+              (因此這種solution比起上面那個方式來得簡單)
+        -->
+        <p>My name is {{ name }}</p>
+        <input type="text" v-model="name"><br>
+
+    </div>
+
+    <script src="app.js" type="text/javascript"></script>
+</body>
+</html>
